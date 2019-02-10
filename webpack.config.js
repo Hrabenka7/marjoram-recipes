@@ -1,10 +1,19 @@
-const path = require('path')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/js/index.js', // starts look for dependencies here
   output: {  // location of the saved bundle file
-    path: path.resolve(__dirname,'dist/js'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname,'dist'),
+    filename: 'js/bundle.js'
   },
-  mode: 'development' // not compressing code
+  devServer: {
+    contentBase: './dist'    // from where to serve the code 
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html'
+    })
+  ]
 };
